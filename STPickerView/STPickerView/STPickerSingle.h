@@ -25,5 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign)CGFloat widthPickerComponent;
 @property(nonatomic, weak)id <STPickerSingleDelegate>delegate;
 
+/** 5.row*/
+@property (nonatomic, assign) NSInteger row;
+
 @end
 NS_ASSUME_NONNULL_END

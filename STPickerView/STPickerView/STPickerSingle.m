@@ -67,6 +67,7 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
+    self.row = row;
     self.selectedTitle = self.arrayData[row];
 }
 
