@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 /** 3.中间选择框的高度，default is 28*/
 @property (nonatomic, assign)CGFloat heightPickerComponent;
 
-@property (nonatomic, assign) Boolean isHiddenDay
+@property (nonatomic, assign) Boolean isHiddenDay;
 
 @property(nonatomic, weak)id <STPickerDateDelegate>delegate ;
 
