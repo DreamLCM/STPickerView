@@ -44,6 +44,10 @@ typedef NS_OPTIONS(NSUInteger, STCalendarUnit) {
     _month = [NSCalendar currentMonth];
     _day   = [NSCalendar currentDay];
     
+    // 默认为不隐藏
+    _isHiddenDay = false;
+
+    
     [self.pickerView setDelegate:self];
     [self.pickerView setDataSource:self];
 }
@@ -52,7 +56,12 @@ typedef NS_OPTIONS(NSUInteger, STCalendarUnit) {
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
-    return 3;
+    if (_isHiddenDay) {
+        return 2;
+    } else {
+        return 3;
+    }
+    
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
@@ -77,18 +86,48 @@ typedef NS_OPTIONS(NSUInteger, STCalendarUnit) {
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    switch (component) {
-        case 0:{
-            self.year = row + self.yearLeast;
-            [pickerView reloadComponent:2];
-        }break;
-        case 1:{
-            self.month = row + 1;
-            [pickerView reloadComponent:2];
-        }break;
-        case 2:{
-        }break;
+//    switch (component) {
+//        case 0:{
+//            self.year = row + self.yearLeast;
+//            [pickerView reloadComponent:2];
+//        }break;
+//        case 1:{
+//            self.month = row + 1;
+//            [pickerView reloadComponent:2];
+//        }break;
+//        case 2:{
+//        }break;
+//    }
+    
+    if (_isHiddenDay) {
+        switch (component) {
+            case 0:{
+                self.year = row + self.yearLeast;
+                [pickerView reloadComponent:1];
+            }break;
+            case 1:{
+                self.month = row + 1;
+                [pickerView reloadComponent:1];
+            }break;
+        }
+        
+    } else {
+        switch (component) {
+            case 0:{
+                self.year = row + self.yearLeast;
+                [pickerView reloadComponent:2];
+            }break;
+            case 1:{
+                self.month = row + 1;
+                [pickerView reloadComponent:2];
+            }break;
+            case 2:{
+            }break;
+        }
     }
+
+    
+    
 }
 
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(nullable UIView *)view
@@ -141,7 +180,13 @@ typedef NS_OPTIONS(NSUInteger, STCalendarUnit) {
     _yearLeast = yearLeast;
     [self.pickerView selectRow:(_year - _yearLeast) inComponent:0 animated:NO];
     [self.pickerView selectRow:(_month - 1) inComponent:1 animated:NO];
-    [self.pickerView selectRow:(_day - 1) inComponent:2 animated:NO];
+    
+    if (_isHiddenDay) {
+        
+    } else {
+        [self.pickerView selectRow:(_day - 1) inComponent:2 animated:NO];
+    }
+
     [self.pickerView reloadAllComponents];
 }
 
