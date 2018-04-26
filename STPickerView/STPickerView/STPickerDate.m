@@ -160,8 +160,13 @@ typedef NS_OPTIONS(NSUInteger, STCalendarUnit) {
 - (void)selectedOk
 {
     if ([self.delegate respondsToSelector:@selector(pickerDate:year:month:day:)]) {
-        NSInteger day = [self.pickerView selectedRowInComponent:2] + 1;
-         [self.delegate pickerDate:self year:self.year month:self.month day:day];
+        if (_isHiddenDay) {
+            [self.delegate pickerDate:self year:self.year month:self.month day:0];
+            
+        } else {
+            NSInteger day = [self.pickerView selectedRowInComponent:2] + 1;
+            [self.delegate pickerDate:self year:self.year month:self.month day:day];
+        }
     }
    
     [super selectedOk];
