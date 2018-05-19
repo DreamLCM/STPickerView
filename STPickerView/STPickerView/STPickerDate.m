@@ -46,6 +46,7 @@ typedef NS_OPTIONS(NSUInteger, STCalendarUnit) {
     
     // 默认为不隐藏
     _isHiddenDay = false;
+    _isHiddenMonth = false;
 
     
     [self.pickerView setDelegate:self];
@@ -57,9 +58,18 @@ typedef NS_OPTIONS(NSUInteger, STCalendarUnit) {
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     if (_isHiddenDay) {
-        return 2;
+        if (_isHiddenMonth) {
+            return 1;
+        } else {
+           return 2;
+        }
+        
     } else {
-        return 3;
+        if (_isHiddenMonth) {
+            return 2;
+        } else {
+            return 3;
+        }
     }
     
 }
@@ -100,34 +110,57 @@ typedef NS_OPTIONS(NSUInteger, STCalendarUnit) {
 //    }
     
     if (_isHiddenDay) {
-        switch (component) {
-            case 0:{
-                self.year = row + self.yearLeast;
-                [pickerView reloadComponent:1];
-            }break;
-            case 1:{
-                self.month = row + 1;
-                [pickerView reloadComponent:1];
-            }break;
+        if (_isHiddenMonth) {
+            switch (component) {
+                case 0:{
+                    self.year = row + self.yearLeast;
+                    [pickerView reloadComponent:0];
+                }break;
+            }
+            
+        } else {
+            switch (component) {
+                case 0:{
+                    self.year = row + self.yearLeast;
+                    [pickerView reloadComponent:0];
+                }break;
+                case 1:{
+                    self.month = row + 1;
+                    [pickerView reloadComponent:1];
+                }break;
+            }
         }
         
     } else {
-        switch (component) {
-            case 0:{
-                self.year = row + self.yearLeast;
-                [pickerView reloadComponent:2];
-            }break;
-            case 1:{
-                self.month = row + 1;
-                [pickerView reloadComponent:2];
-            }break;
-            case 2:{
-            }break;
+        
+        if (_isHiddenMonth) {
+            
+            switch (component) {
+                case 0:{
+                    self.year = row + self.yearLeast;
+                    [pickerView reloadComponent:0];
+                }break;
+            }
+            
+            
+        } else {
+            switch (component) {
+                case 0:{
+                    self.year = row + self.yearLeast;
+                    [pickerView reloadComponent:0];
+                }break;
+                case 1:{
+                    self.month = row + 1;
+                    [pickerView reloadComponent:1];
+                }break;
+                case 2:{
+                }break;
+            }
         }
+        
+        
     }
 
-    
-    
 }
 
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(nullable UIView *)view
@@ -163,9 +196,24 @@ typedef NS_OPTIONS(NSUInteger, STCalendarUnit) {
         if (_isHiddenDay) {
             [self.delegate pickerDate:self year:self.year month:self.month day:0];
             
+            if (_isHiddenMonth) {
+                [self.delegate pickerDate:self year:self.year month:0 day:0];
+            } else {
+                [self.delegate pickerDate:self year:self.year month:self.month day:0];
+            }
+            
         } else {
-            NSInteger day = [self.pickerView selectedRowInComponent:2] + 1;
-            [self.delegate pickerDate:self year:self.year month:self.month day:day];
+            
+            if (_isHiddenMonth) {
+                NSInteger day = [self.pickerView selectedRowInComponent:2] + 1;
+                [self.delegate pickerDate:self year:self.year month:0 day:day];
+                
+            } else {
+                NSInteger day = [self.pickerView selectedRowInComponent:2] + 1;
+                [self.delegate pickerDate:self year:self.year month:self.month day:day];
+            }
+            
+            
         }
     }
    
@@ -189,6 +237,7 @@ typedef NS_OPTIONS(NSUInteger, STCalendarUnit) {
     if (_isHiddenDay) {
         
     } else {
+        
         [self.pickerView selectRow:(_day - 1) inComponent:2 animated:NO];
     }
 

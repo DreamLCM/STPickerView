@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign)CGFloat heightPickerComponent;
 
 @property (nonatomic, assign) Boolean isHiddenDay;
+@property (nonatomic, assign) Boolean isHiddenMonth;
 
 @property(nonatomic, weak)id <STPickerDateDelegate>delegate ;
 
