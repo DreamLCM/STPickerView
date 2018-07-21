@@ -22,6 +22,7 @@
 		70A436281E20888F001601A4 /* STPickerViewUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A436171E20888F001601A4 /* STPickerViewUI.m */; };
 		70B0DEC21EBC55F400837A55 /* UIView+STPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 70B0DEC01EBC55F400837A55 /* UIView+STPicker.h */; };
 		70B0DEC31EBC55F400837A55 /* UIView+STPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B0DEC11EBC55F400837A55 /* UIView+STPicker.m */; };
+		83EF5D12210323750090CE99 /* STPickerHSArea.m in Sources */ = {isa = PBXBuildFile; fileRef = 83EF5D0F210323740090CE99 /* STPickerHSArea.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,8 @@
 		70A436171E20888F001601A4 /* STPickerViewUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPickerViewUI.m; sourceTree = "<group>"; };
 		70B0DEC01EBC55F400837A55 /* UIView+STPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+STPicker.h"; sourceTree = "<group>"; };
 		70B0DEC11EBC55F400837A55 /* UIView+STPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+STPicker.m"; sourceTree = "<group>"; };
+		83EF5D0F210323740090CE99 /* STPickerHSArea.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = STPickerHSArea.m; sourceTree = "<group>"; };
+		83EF5D11210323740090CE99 /* STPickerHSArea.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = STPickerHSArea.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +107,8 @@
 				70A4360A1E20888E001601A4 /* NSCalendar+STPicker.m */,
 				70A4360B1E20888E001601A4 /* STPickerArea.h */,
 				70A4360C1E20888E001601A4 /* STPickerArea.m */,
+				83EF5D11210323740090CE99 /* STPickerHSArea.h */,
+				83EF5D0F210323740090CE99 /* STPickerHSArea.m */,
 				70A4360D1E20888E001601A4 /* STPickerDate.h */,
 				70A4360E1E20888E001601A4 /* STPickerDate.m */,
 				70A4360F1E20888F001601A4 /* STPickerSingle.h */,
@@ -209,6 +214,7 @@
 				70A436281E20888F001601A4 /* STPickerViewUI.m in Sources */,
 				70A4361B1E20888F001601A4 /* NSCalendar+STPicker.m in Sources */,
 				70A436211E20888F001601A4 /* STPickerSingle.m in Sources */,
+				83EF5D12210323750090CE99 /* STPickerHSArea.m in Sources */,
 				70B0DEC31EBC55F400837A55 /* UIView+STPicker.m in Sources */,
 				70A436231E20888F001601A4 /* STPickerView.m in Sources */,
 				70A4361D1E20888F001601A4 /* STPickerArea.m in Sources */,

@@ -11,12 +11,14 @@
 #import "STPickerSingle.h"
 #import "STPickerDate.h"
 #import "STPickerArea.h"
+#import "STPickerHSArea.h"
 
-
-@interface ViewController ()<UITextFieldDelegate, STPickerAreaDelegate, STPickerSingleDelegate, STPickerDateDelegate>
+@interface ViewController ()<UITextFieldDelegate, STPickerAreaDelegate, STPickerSingleDelegate, STPickerDateDelegate,STPickerHSAreaDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *textArea;
 @property (weak, nonatomic) IBOutlet UITextField *textSingle;
 @property (weak, nonatomic) IBOutlet UITextField *textDate;
+
+@property (strong, nonatomic)  STPickerHSArea *pickerArea;
 @end
 
 @implementation ViewController
@@ -39,11 +41,11 @@
         [self.textArea resignFirstResponder];
         
         
-        STPickerArea *pickerArea = [[STPickerArea alloc]init];
-        [pickerArea setDelegate:self];
-        [pickerArea setSaveHistory:YES];
-        [pickerArea setContentMode:STPickerContentModeCenter];
-        [pickerArea show];
+        _pickerArea = [[STPickerHSArea alloc]init];
+        [_pickerArea setDelegate:self];
+        _pickerArea.arrayCity = @[@"全部",@"中山",@"佛山"];
+        [_pickerArea setContentMode:STPickerContentModeBottom];
+        [_pickerArea show];
         
     }
     
@@ -94,6 +96,25 @@
     NSString *text = [NSString stringWithFormat:@"%zd年%zd月%zd日", year, month, day];
     self.textDate.text = text;
 }
+
+- (void)pickerHSArea:(STPickerHSArea *)pickerHSArea row:(NSInteger)row {
+    NSLog(@"当前点击第 %ld 行",row);
+    switch (row) {
+        case 0:
+            _pickerArea.arrayArea = @[@"全部"];
+            break;
+        case 1:
+            _pickerArea.arrayArea = @[@"测试一",@"测试一",@"测试一",@"测试一",@"测试一",@"测试一"];
+            break;
+        case 2:
+            _pickerArea.arrayArea = @[@"测试一",@"城区",@"小榄",@"城区",@"小榄",@"火炬开发区",@"坦洲",@"测试一"];
+            break;
+            
+        default:
+            break;
+    }
+}
+
 #pragma mark - --- event response 事件相应 ---
 
 #pragma mark - --- private methods 私有方法 ---
