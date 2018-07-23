@@ -17,6 +17,9 @@
 /** 4.地区 */
 @property (nonatomic, strong, nullable)NSString *area;
 
+@property (nonatomic, assign)NSInteger rowCity;
+@property (nonatomic, assign)NSInteger rowArea;
+
 
 @end
 
@@ -33,6 +36,8 @@
 
     self.city = _arrayCity.firstObject;
     self.area = _arrayArea.firstObject;
+    self.rowCity = 0;
+    self.rowArea = 0;
     
     // 2.设置视图的默认属性
     _heightPickerComponent = 32;
@@ -64,6 +69,9 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
+    
+    
+    
     if (component == 0) {
         
         //        switch (row) {
@@ -89,6 +97,7 @@
         
         [self.delegate pickerHSArea:self row:row];
         self.city = self.arrayCity[row];
+        self.rowCity = row;
         self.area = self.arrayArea.firstObject;
         [self.pickerView selectRow:0 inComponent:1 animated:YES];
         [self reloadData];
@@ -97,6 +106,7 @@
     } else {
         
         self.area = self.arrayArea[row];
+        self.rowArea = row;
         [self reloadData];
         
     }
@@ -134,10 +144,10 @@
 {
     
     if ([self.delegate respondsToSelector:@selector(pickerArea:city:area:)]) {
-        [self.delegate pickerArea:self city:self.city area:self.area];
+        [self.delegate pickerArea:self city:self.city area:self.area rowArea:self.rowArea rowCity:self.rowCity];
     }
     
-    NSLog(@"%@",[NSString stringWithFormat:@"%@ %@", self.city, self.area]);
+    NSLog(@"%@",[NSString stringWithFormat:@"%@ %@ %ld %ld", self.city, self.area, self.rowCity, self.rowArea]);
     
     [super selectedOk];
 }

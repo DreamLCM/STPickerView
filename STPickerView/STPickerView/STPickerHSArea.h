@@ -13,7 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 @class STPickerHSArea;
 @protocol  STPickerHSAreaDelegate<NSObject>
 
-- (void)pickerArea:(STPickerHSArea *)pickerArea city:(NSString *)city area:(NSString *)area;
+- (void)pickerArea:(STPickerHSArea *)pickerArea
+              city:(NSString *)city area:(NSString *)area
+              rowArea:(NSInteger)rowArea rowCity:(NSInteger)rowCity;
 
 - (void)pickerHSArea:(STPickerHSArea *)pickerHSArea row:(NSInteger)row;
 
