@@ -143,7 +143,7 @@
 - (void)selectedOk
 {
     
-    if ([self.delegate respondsToSelector:@selector(pickerArea:city:area:)]) {
+    if ([self.delegate respondsToSelector:@selector(pickerArea:city:area:rowArea:rowCity:)]) {
         [self.delegate pickerArea:self city:self.city area:self.area rowArea:self.rowArea rowCity:self.rowCity];
     }
     
