@@ -66,31 +66,33 @@
 {
     if (component == 0) {
         
-        switch (row) {
-            case 0:
-                self.arrayArea = @[@"全部"];
-                [self.delegate pickerHSArea:self row:row];
-                [self.pickerView reloadAllComponents];
-                break;
-            case 1:
-                self.arrayArea = @[@"城区",@"小榄",@"火炬开发区",@"坦洲"];
-                [self.delegate pickerHSArea:self row:row];
-                [self.pickerView reloadAllComponents];
-                break;
-            case 2:
-                self.arrayArea = @[@"伦教",@"北滘",@"南海",@"官窑"];
-                [self.delegate pickerHSArea:self row:row];
-                [self.pickerView reloadAllComponents];
-                break;
-                
-            default:
-                break;
-        }
+        //        switch (row) {
+        //            case 0:
+        //                self.arrayArea = @[@"全部"];
+        //                [self.delegate pickerHSArea:self row:row];
+        //                [self.pickerView reloadAllComponents];
+        //                break;
+        //            case 1:
+        //                self.arrayArea = @[@"城区",@"小榄",@"火炬开发区",@"坦洲"];
+        //                [self.delegate pickerHSArea:self row:row];
+        //                [self.pickerView reloadAllComponents];
+        //                break;
+        //            case 2:
+        //                self.arrayArea = @[@"伦教",@"北滘",@"南海",@"官窑"];
+        //                [self.delegate pickerHSArea:self row:row];
+        //                [self.pickerView reloadAllComponents];
+        //                break;
+        //
+        //            default:
+        //                break;
+        //        }
         
+        [self.delegate pickerHSArea:self row:row];
         self.city = self.arrayCity[row];
         self.area = self.arrayArea.firstObject;
         [self.pickerView selectRow:0 inComponent:1 animated:YES];
         [self reloadData];
+        [self.pickerView reloadAllComponents];
         
     } else {
         
