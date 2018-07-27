@@ -30,12 +30,9 @@
 - (void)setupUI
 {
  
-    
-    self.arrayCity = @[@"全部"];
-    self.arrayArea = @[@"全部"];
 
-    self.city = _arrayCity.firstObject;
-    self.area = _arrayArea.firstObject;
+    self.city = @"";
+    self.area = @"";
     self.rowCity = 0;
     self.rowArea = 0;
     
@@ -168,12 +165,14 @@
 - (void)setArrayArea:(NSMutableArray<NSString *> *)arrayArea
 {
     _arrayArea = arrayArea;
+    self.area = arrayArea.firstObject;
     [self.pickerView reloadAllComponents];
 }
 
 - (void)setArrayCity:(NSMutableArray<NSString *> *)arrayCity
 {
     _arrayCity = arrayCity;
+    self.city = arrayCity.firstObject;
     [self.pickerView reloadAllComponents];
 }
 

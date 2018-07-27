@@ -43,7 +43,8 @@
         
         _pickerArea = [[STPickerHSArea alloc]init];
         [_pickerArea setDelegate:self];
-        _pickerArea.arrayCity = @[@"全部",@"中山",@"佛山"];
+        _pickerArea.arrayCity = @[@"中山",@"佛山"];
+        _pickerArea.arrayArea = @[@"测试一",@"测试一",@"测试一",@"测试一",@"测试一",@"测试一"];
         [_pickerArea setContentMode:STPickerContentModeBottom];
         [_pickerArea show];
         
@@ -101,12 +102,9 @@
     NSLog(@"当前点击第 %ld 行",row);
     switch (row) {
         case 0:
-            _pickerArea.arrayArea = @[@"全部"];
-            break;
-        case 1:
             _pickerArea.arrayArea = @[@"测试一",@"测试一",@"测试一",@"测试一",@"测试一",@"测试一"];
             break;
-        case 2:
+        case 1:
             _pickerArea.arrayArea = @[@"测试一",@"城区",@"小榄",@"城区",@"小榄",@"火炬开发区",@"坦洲",@"测试一"];
             break;
             
